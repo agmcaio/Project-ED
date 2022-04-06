@@ -1,0 +1,41 @@
+=======TIPO ABSTRATO DE DADOS========
+Carta = Numeração
+        Numeração = 1..13
+        Quantidade total de cartas = inteiro
+        Cor da carta = String
+
+Baralho = Conjunto de cartas (Pilha de cartas)
+
+Jogador = Cartas recebidas
+          Nome (jogador 1 e jogador 2)
+
+Batalha = Retirada das cartas na pilha
+          Comparação das cartas
+
+
+=======Identificando classes=======     
+Jogador
+Carta
+Baralho
+Batalha
+
+main.py (puxando batalha)
+
+=======Abstração de procedimentos========
+Carta
+    - mostrarNumeracao()
+
+Baralho
+    - criarCartas() // Só é chamado uma vez
+    - embaralhar()
+    - retirarCarta(num_cartas)
+    - receberCarta(carta)
+    - temCarta()
+    - numCartas()
+
+Jogador
+    - devolverCarta(carta, Baralho)
+    - retirarCarta(Baralho)
+    - receberCartas(Baralho)
+    - mostrarCarta()
+
