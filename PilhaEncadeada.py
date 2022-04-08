@@ -5,8 +5,8 @@ class PilhaException(Exception):
 
 class Node:
     def __init__(self, dado):
-        self.dado = dado
-        self.prox = None
+        self.dado = dado #valor
+        self.prox = None #Proximo node
 
     def insereProximo(self, dado):
         if (self.prox == None):
@@ -65,13 +65,22 @@ class Pilha:
 
         raise PilhaException(f'Valor {valor} nao esta na pilha','busca()')
         
+    def inserirBase(self, dado):
+        novo = Node(dado)
+        if self.estaVazia():
+            self.__head = novo
+            return
+        else:
+            cursor = self.__head
+            while(cursor.prox != None):
+                cursor = cursor.prox
+            cursor.prox = novo
 
     def empilha(self, valor):
         novo = Node(valor)
         novo.prox = self.__head
         self.__head = novo
         self.__tamanho += 1
-
 
     def desempilha(self):
         if not self.estaVazia():
@@ -89,6 +98,7 @@ class Pilha:
         cursor = self.__head
         primeiro = True
         s = 'topo->['
+
         while( cursor != None):
             if primeiro:
                 s += f'{cursor.dado}'
@@ -99,22 +109,4 @@ class Pilha:
 
         s += ']'
         return s
-
- 
-
-# Programa para testar
-if __name__ == '__main__':
-    p = Pilha()
-    p.empilha(10)
-    p.empilha(20)
-    p.empilha(30)
-    p.empilha(40)
-    print('Tamanho:',p.tamanho())
-    print(p)
-
-    #esvaziando
-    while( not p.estaVazia()):
-        print(p.desempilha())
-        p.imprime()
-    
 

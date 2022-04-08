@@ -9,8 +9,9 @@ class BaralhoException(Exception):
 
 class Baralho:
     def __init__(self):
-        self.baralho = list()
+        self.__baralhoImplementado = Pilha()
 
+        self.baralho = list()
         naipe = ["Ouro", "Espada", "Paus", "Copas"]
         numeracao = ["As","2","3","4","5","6","7","8","9","10","Valete","Dama","Rei"]
 
@@ -19,34 +20,25 @@ class Baralho:
                 self.baralho.append(Carta(id, naipe[idx]))
             
     def __len__(self): 
-        return self.baralho.tamanho()
+        return self.__baralhoImplementado.tamanho()
     
     def temCarta(self):
-        if len(self.baralho) > 0:
+        if not self.__baralhoImplementado.estaVazia():
             return True
 
         return False
     
     def retirarCarta(self):
-        if self.temCarta():
-            return self.baralho.pop()
-        else:
-            raise BaralhoException("Não há cartas no baralho")
+       return self.__baralhoImplementado.desempilha()
 
     def embaralhar(self):
-        import random
-        random.shuffle(self.baralho)
+        shuffle(self.baralho)
+
+        for carta in self.baralho:
+            self.__baralhoImplementado.empilha(carta)
     
     def imprime(self):
-        print(self.baralho)
+        print(self.__str__())
         
-        
-if __name__ == "__main__":
-    test = Baralho()
-    test.embaralhar()
-    test.imprime()
-    print(f'Há cartas? {test.temCarta()}')
-    for i in range(52):
-        print(test.retirarCarta())  # retira carta do baralho
-    print(f'Há cartas? {test.temCarta()}')
-    test.imprime()
+    def __str__(self):
+        return self.__baralhoImplementado
