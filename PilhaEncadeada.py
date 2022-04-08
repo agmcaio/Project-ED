@@ -76,6 +76,17 @@ class Pilha:
                 cursor = cursor.prox
             cursor.prox = novo
 
+    def inserirCartaNaBase(self, dado):
+        novo = Node(dado)
+        if self.estaVazia():
+            self.__head = novo
+            return
+        else:
+            cursor = self.__head
+            while(cursor.prox != None):
+                cursor = cursor.prox
+            cursor.prox = novo
+
     def empilha(self, valor):
         novo = Node(valor)
         novo.prox = self.__head
@@ -97,7 +108,7 @@ class Pilha:
     def __str__(self):
         cursor = self.__head
         primeiro = True
-        s = 'topo->['
+        s = 'Topo da pilha -> ['
 
         while( cursor != None):
             if primeiro:
